@@ -29,7 +29,7 @@
     <!-- nav bar -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{asset('/')}}">
                 <img src="{{asset('images/logo.svg')}}" width="106" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,10 +39,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item d-flex justify-content-center">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="{{('/news')}}">News</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center">
-                        <a class="nav-link" href="#">Portfolio</a>
+                        <a class="nav-link" href="{{('/add-news')}}">新增最新消息</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center">
                         <a class="nav-link" href="#">About</a>

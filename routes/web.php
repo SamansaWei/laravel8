@@ -1,6 +1,7 @@
 <?php
-use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,20 @@ Route::get('/',[FrontController::class,'index']);
 
 Route::get('/news',[FrontController::class,'news']);
 
-Route::get('/news/{id}',[FrontController::class,'newscontent']);
+Route::get('/news/{id}',[FrontController::class,'newsContent']);
+
+Route::get('/create-news',[FrontController::class,'ceeateNews']);
+
+Route::get('/update-news/{id}',[FrontController::class,'updateNews']);
+
+Route::get('/destroy-news/{id}',[FrontController::class,'destroyNews']);
+
+Route::post('/contact',[FrontController::class,'contact']);
+
+Route::get('/add-news',[FrontController::class,'addNews']);
+
+Route::post('/add-anter',[FrontController::class,'addAnter']);
+
 
 
 // Route::get('/hello',[FrontController::class,'hello']);
@@ -36,3 +50,7 @@ Route::get('/news/{id}',[FrontController::class,'newscontent']);
 //     // 上面寫法資料越多會越長，可以改為
 //     return view('hello', compact('name','age'));
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
