@@ -18,25 +18,15 @@ use App\Http\Controllers\FrontController;
 //     return view('index');
 // });
 
-Route::get('/',[FrontController::class,'index']);
+// Route::get('/create-news',[FrontController::class,'ceeateNews']);
 
-Route::get('/news',[FrontController::class,'news']);
+// Route::get('/update-news/{id}',[FrontController::class,'updateNews']);
 
-Route::get('/news/{id}',[FrontController::class,'newsContent']);
+// Route::get('/destroy-news/{id}',[FrontController::class,'destroyNews']);
 
-Route::get('/create-news',[FrontController::class,'ceeateNews']);
+// Route::get('/add-news',[FrontController::class,'addNews']);
 
-Route::get('/update-news/{id}',[FrontController::class,'updateNews']);
-
-Route::get('/destroy-news/{id}',[FrontController::class,'destroyNews']);
-
-Route::post('/contact',[FrontController::class,'contact']);
-
-Route::get('/add-news',[FrontController::class,'addNews']);
-
-Route::post('/add-anter',[FrontController::class,'addAnter']);
-
-
+// Route::post('/add-anter',[FrontController::class,'addAnter']);
 
 // Route::get('/hello',[FrontController::class,'hello']);
 
@@ -50,6 +40,20 @@ Route::post('/add-anter',[FrontController::class,'addAnter']);
 //     // 上面寫法資料越多會越長，可以改為
 //     return view('hello', compact('name','age'));
 // });
+
+
+Route::get('/',[FrontController::class,'index']);
+
+Route::prefix('/news')->group(function(){
+    Route::get('/',[FrontController::class,'newsList']);
+    Route::get('/{id}',[FrontController::class,'newsContent']);
+});
+
+// Route::get('/news',[FrontController::class,'newsList']);
+
+// Route::get('/news/{id}',[FrontController::class,'newsContent']);
+
+Route::post('/contact',[FrontController::class,'contact']);
 
 Auth::routes();
 
