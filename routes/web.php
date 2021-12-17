@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ use App\Http\Controllers\FrontController;
 //     return view('hello', compact('name','age'));
 // });
 
-
+// 前台的
 Route::get('/',[FrontController::class,'index']);
 
 Route::prefix('/news')->group(function(){
@@ -49,12 +50,23 @@ Route::prefix('/news')->group(function(){
     Route::get('/{id}',[FrontController::class,'newsContent']);
 });
 
-// Route::get('/news',[FrontController::class,'newsList']);
-
-// Route::get('/news/{id}',[FrontController::class,'newsContent']);
-
 Route::post('/contact',[FrontController::class,'contact']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// 後台的
+Route::prefix('/admin')->group(function(){
+    // 最新消息
+    Route::prefix('/news')->group(function(){
+
+        Route::get('/',[NewsController::class,'index'])->name('news.index');
+        Route::get('/create',[NewsController::class,'create'])->name('news.create');
+        Route::post('/',[NewsController::class,'store'])->name('news.store');
+        Route::get('/{id}/edit',[NewsController::class,'edit'])->name('news.edit');
+        Route::patch('/{id}',[NewsController::class,'update'])->name('news.update');
+        Route::delete('/{id}',[NewsController::class,'destroy'])->name('news.destroy');
+
+    });
+});
