@@ -9,6 +9,8 @@
         @yield('title')
     </title>
 
+    {!! htmlScriptTagJsApi() !!}
+
     <!-- bootstrap Core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- font-awesom Core CSS -->
@@ -17,6 +19,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- layout Core CSS -->
     <link rel="stylesheet" href="{{asset('css/layout.css')}}">
+
 
     {{-- 挖一個洞讓等一下可以塞東西 --}}
     @yield('css')

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\News;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
+use Illuminate\Support\Facades\Validator;
 use function PHPUnit\Framework\returnSelf;
 
 class FrontController extends Controller
@@ -39,6 +40,22 @@ class FrontController extends Controller
 
 
     public function contact(Request $request){
+
+        $validator = Validator::make(request()->all(), [
+        
+            'g-recaptcha-response' => 'recaptcha',
+            recaptchaFieldName() => recaptchaRuleName()
+        ]);
+        
+        // check if validator fails
+        if($validator->fails()) {
+            
+            return redirect('/')
+            ->withErrors($validator)
+            ->withInput();
+
+
+        }
 
         Contact::create([
             'name' => $request->name,

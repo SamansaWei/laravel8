@@ -1,8 +1,11 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\FrontController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ToolboxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,40 +18,16 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('/create-news',[FrontController::class,'ceeateNews']);
-
-// Route::get('/update-news/{id}',[FrontController::class,'updateNews']);
-
-// Route::get('/destroy-news/{id}',[FrontController::class,'destroyNews']);
-
-// Route::get('/add-news',[FrontController::class,'addNews']);
-
-// Route::post('/add-anter',[FrontController::class,'addAnter']);
-
-// Route::get('/hello',[FrontController::class,'hello']);
-
-
-
-// Route::get('/hello', function () {
-//     $name = 'Sam';
-//     $age ='20';
-//     // return view('hello');
-//     // return view('hello', ['name' => $name , 'age' => $age]);
-//     // 上面寫法資料越多會越長，可以改為
-//     return view('hello', compact('name','age'));
-// });
 
 // 前台的
-Route::get('/',[FrontController::class,'index']);
+Route::get('/',[FrontController::class,'index'])->name('index');
 
 Route::prefix('/news')->group(function(){
     Route::get('/',[FrontController::class,'newsList']);
     Route::get('/{id}',[FrontController::class,'newsContent']);
 });
+
+Route::get('/facility',[FrontController::class,'facility'])->name('facility');
 
 Route::post('/contact',[FrontController::class,'contact']);
 
@@ -69,4 +48,14 @@ Route::prefix('/admin')->group(function(){
         Route::delete('/{id}',[NewsController::class,'destroy'])->name('news.destroy');
 
     });
+
+    Route::prefix('facility')->group(function(){
+        Route::get('/',[FacilityController::class,'index'])->name('facility.index');
+        Route::get('/create',[FacilityController::class,'create'])->name('facility.create');
+        Route::post('/',[FacilityController::class,'store'])->name('facility.store');
+    });
+
+    Route::post('/image-uplpad',[ToolboxController::class,'imageUpload'])->name('tool.image_upload');
+
+
 });

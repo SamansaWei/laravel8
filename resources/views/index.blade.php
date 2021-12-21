@@ -527,14 +527,19 @@
                         <h6 class="card-subtitle mb-2 text-muted">歡迎來訊指教</h6>
                         <div class="my-4">
                             <label for="name" class="form-label">姓名</label>
-                            <input type="text" class="form-control mb-3" id="name" name="name" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control mb-3" id="name" name="name" value="{{ old('name') }}" aria-describedby="basic-addon3">
                             <label for="phone" class="form-label">電話</label>
-                            <input type="text" class="form-control mb-3" id="phone" name="phone" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control mb-3" id="phone" name="phone" value="{{ old('phone') }}" aria-describedby="basic-addon3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control mb-3" id="email" name="email" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control mb-3" id="email" name="email" value="{{ old('email') }}" aria-describedby="basic-addon3">
                             <label for="content" class="form-label">Message</label>
-                            <textarea type="text" rows="4" class="form-control message_textarea" id="content" name="content"
-                                aria-describedby="basic-addon3"></textarea>
+                            <textarea type="text" rows="4" class="form-control message_textarea"  id="content" name="content"
+                                aria-describedby="basic-addon3">{{ old('content') }}</textarea>
+                                @error('g-recaptcha-response')
+                                <strong>{{ $message }}</strong>
+                                @enderror
+                            {!! htmlFormSnippet() !!}
+
                         </div>
                         <button type="submit" class="btn w-100 px-4 feedback_btn">Button</button>
                         <p class="mt-2">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.
