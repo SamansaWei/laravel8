@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ToolboxController;
+use App\Http\Controllers\FacilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('/facility',[FrontController::class,'facility'])->name('facility');
 
 Route::post('/contact',[FrontController::class,'contact']);
 
+Route::prefix('/product')->group(function(){
+    Route::get('/',[FrontController::class,'productList'])->name('product.list');
+    Route::get('/{id}',[FrontController::class,'productContent'])->name('product.content');
+});
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -55,7 +61,12 @@ Route::prefix('/admin')->group(function(){
         Route::post('/',[FacilityController::class,'store'])->name('facility.store');
     });
 
+     // 產品
+    Route::resource('products', ProductController::class);
+    Route::delete('/product-image',[ProductController::class,'imageDelete'])->name('product.image_delete');
+
     Route::post('/image-uplpad',[ToolboxController::class,'imageUpload'])->name('tool.image_upload');
+
 
 
 });

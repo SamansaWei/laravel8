@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Contact;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Expr\AssignOp\Concat;
 
+use PhpParser\Node\Expr\AssignOp\Concat;
 use Illuminate\Support\Facades\Validator;
 use function PHPUnit\Framework\returnSelf;
 
@@ -64,6 +65,22 @@ class FrontController extends Controller
             'content' => $request->content,
         ]);
         return redirect('/');
+    }
+
+
+    public function productList(){
+        $products = Product::get();
+
+        return view('front.product.list',compact('products'));
+    }
+
+    public function productContent($id){
+        $product = Product::with('productImages')->find($id);
+        // dd($product);
+
+        return view('front.product.content',compact('product'));
+
+
     }
 
 

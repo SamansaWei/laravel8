@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{asset('/admin/facility')}}">設施管理</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{asset('/admin/products')}}">產品管理</a>
+                        </li>
                         @endguest
 
                     </ul>
