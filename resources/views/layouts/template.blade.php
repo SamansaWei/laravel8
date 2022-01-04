@@ -47,13 +47,13 @@
                         <a class="nav-link" href="{{('/add-news')}}">新增最新消息</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center">
-                        <a class="nav-link" href="{{'product.list'}}">產品</a>
+                        <a class="nav-link" href="{{'product'}}">產品</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center">
-                        <a class="nav-link" href="./checkout1.html">
+                        <a class="nav-link" href="{{route('shopping.cart.step01')}}">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                         <div class="nav-item dropdown d-flex flex-column justify-content-center align-items-center ml-3 ml-md-0">

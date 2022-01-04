@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Contact;
 use App\Models\Product;
+use App\Mail\ContactNotify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Mail;
 use PhpParser\Node\Expr\AssignOp\Concat;
 use Illuminate\Support\Facades\Validator;
 use function PHPUnit\Framework\returnSelf;
@@ -58,12 +60,15 @@ class FrontController extends Controller
 
         }
 
-        Contact::create([
+        $contact = Contact::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
             'content' => $request->content,
         ]);
+
+        Mail::to($contact->email)->send(new ContactNotify($contact));
+
         return redirect('/');
     }
 

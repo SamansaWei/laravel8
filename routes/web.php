@@ -7,6 +7,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ToolboxController;
 use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ use App\Http\Controllers\FacilityController;
 // 前台的
 Route::get('/',[FrontController::class,'index'])->name('index');
 
+
+
 Route::prefix('/news')->group(function(){
     Route::get('/',[FrontController::class,'newsList']);
     Route::get('/{id}',[FrontController::class,'newsContent']);
@@ -36,6 +39,17 @@ Route::prefix('/product')->group(function(){
     Route::get('/',[FrontController::class,'productList'])->name('product.list');
     Route::get('/{id}',[FrontController::class,'productContent'])->name('product.content');
 });
+
+Route::prefix('/shopping-cart')->group(function(){
+    Route::post('/add',[ShoppingCartController::class,'add'])->name('shopping-cart.add');
+    Route::get('/content',[ShoppingCartController::class,'content']);
+    Route::get('/clear',[ShoppingCartController::class,'clear']);
+
+    Route::get('step01',[ShoppingCartController::class,'step01'])->name('shopping.cart.step01');
+
+});
+
+
 
 Auth::routes();
 
